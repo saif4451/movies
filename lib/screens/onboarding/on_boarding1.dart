@@ -10,7 +10,7 @@ class OnBoarding1 extends StatelessWidget {
 
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: Text('Ehab'),
+        title: Text('Ehab Ramadan'),
       ),
     );
   }

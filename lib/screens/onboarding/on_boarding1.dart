@@ -9,6 +9,9 @@ class OnBoarding1 extends StatelessWidget {
     return Scaffold(
 
       backgroundColor: AppColors.primaryColor,
+      appBar: AppBar(
+        title: Text('data'),
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_routs.dart';
 import 'package:movies_app/screens/onboarding/on_boarding1.dart';
+import 'package:movies_app/screens/onboarding/on_boarding2.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         AppRouts.onBoarding1 :(context) => OnBoarding1(),
+        AppRouts.onBoarding2 :(context) => OnBoarding2(),
       },
       initialRoute: AppRouts.onBoarding1,
       localizationsDelegates: context.localizationDelegates,

@@ -8,13 +8,28 @@ class AppTextStyels {
     fontSize: 36,
     fontWeight: FontWeight.w500
   );
+  static const TextStyle white24bold = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 24,
+    fontWeight: FontWeight.bold
+  );
   static const TextStyle lightWhite20regular = TextStyle(
     color: AppColors.lightwhiteColor,
     fontSize: 20,
     fontWeight: FontWeight.w400
   );
+  static const TextStyle White20regular = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w400
+  );
   static const TextStyle black20semi = TextStyle(
     color: AppColors.blackColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w600
+  );
+  static const TextStyle orange20semi = TextStyle(
+    color: AppColors.primaryColor,
     fontSize: 20,
     fontWeight: FontWeight.w600
   );

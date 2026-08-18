@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/app_routs.dart';
 import 'package:movies_app/core/utils/app_text_styels.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
+import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 
 class OnBoarding1 extends StatelessWidget {
   const OnBoarding1({super.key});
@@ -18,7 +20,7 @@ class OnBoarding1 extends StatelessWidget {
       body: Stack(
 
         children: [
-          Image.asset(AppAssets.onBoarding1, width: width,fit: BoxFit.fill,height: height,),
+          Image.asset(AppAssets.onBoarding1, width: width,fit: BoxFit.fill,height: height,gaplessPlayback: true,),
           Padding(
             padding:  EdgeInsets.symmetric(vertical:height*0.02 ,horizontal:width*0.04 ),
             child: Column(
@@ -28,16 +30,7 @@ class OnBoarding1 extends StatelessWidget {
                 Spacer(),
                 Text(context.tr('on_boarding1_title'), style: AppTextStyels.white36medium, textAlign: TextAlign.center,),
                 Text(context.tr('on_boarding1_body'), style: AppTextStyels.lightWhite20regular),
-                ElevatedButton(onPressed: (){},
-                    child:Text(context.tr('explore_now'), style: AppTextStyels.black20semi,),
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: Size(width, height*0.06),
-                    backgroundColor:AppColors.primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(15),
-                    )
-                  ),
-                ),
+                CustomElevatedButton(textStyle: AppTextStyels.black20semi,color: AppColors.primaryColor,text: 'explore_now', func: () => Navigator.pushReplacementNamed(context, AppRouts.onBoarding2),)
 
 
 

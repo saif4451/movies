@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRouts.onBoarding1 :(context) => OnBoarding1(),
         AppRouts.onBoarding2 :(context) => OnBoarding2(),
+        AppRouts.register :(context) => Register(),
       },
       initialRoute: AppRouts.onBoarding1,
       localizationsDelegates: context.localizationDelegates,

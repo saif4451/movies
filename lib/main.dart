@@ -1,6 +1,8 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_routs.dart';
-import 'package:movies_app/screens/onboarding/on_boarding1.dart';
+import 'package:movies_app/core/utils/app_text_styels.dart';
+import 'package:movies_app/screens/authntication/register.dart';
 
 void main(){
   runApp(MyApp());
@@ -9,13 +11,16 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: AppTextStyels.getThemeData(),
+
       routes: {
-        AppRouts.onBoarding1 :(context) => OnBoarding1(),
+        AppRouts.register :(context) => Register(),
       },
-      initialRoute: AppRouts.onBoarding1,
+      initialRoute: AppRouts.register,
 
     );
   }

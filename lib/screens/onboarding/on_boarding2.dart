@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/Model/on_boarding_model.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/app_routs.dart';
 import 'package:movies_app/core/utils/lists/on_boarding_list.dart';
 import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 
@@ -85,7 +86,7 @@ class _OnBoarding2State extends State<OnBoarding2> {
    }
 
    void finishFunc(){
-
+Navigator.pushReplacementNamed(context,AppRouts.register);
 
    }
 }

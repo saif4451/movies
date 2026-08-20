@@ -30,4 +30,11 @@ class AppAssets {
   static const String onBoarding4 = 'assets/images/on_boarding6.png' ;
   static const String onBoarding4on = 'assets/images/on_boarding6on.png' ;
 
+  static const String homeIcon = 'assets/icons/home_icon.svg' ;
+  static const String searchIcon = 'assets/icons/search_icon.svg' ;
+  static const String browseIcon = 'assets/icons/browse_icon.svg' ;
+  static const String profileIcon = 'assets/icons/profile_icon.svg' ;
+
+
+
 }

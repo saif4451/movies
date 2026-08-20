@@ -7,6 +7,7 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/app_text_styels.dart';
 import 'package:movies_app/screens/authntication/_buildTextField.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
+import 'package:movies_app/screens/widgets/custom_app_bar.dart';
 import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 
 class Register extends StatefulWidget {
@@ -34,30 +35,7 @@ class _RegisterState extends State<Register> {
     return Scaffold(
       backgroundColor: AppColors.blackColor,
 
-      appBar: AppBar(
-        backgroundColor: AppColors.blackColor,
-        elevation: 0,
-
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: AppColors.primaryColor,
-            size: 21,
-          ),
-        ),
-
-        title: Text(
-          context.tr("register"),
-          style: AppTextStyels.orange20semi.copyWith(
-            fontSize: 14,
-          ),
-        ),
-
-        centerTitle: true,
-      ),
+      appBar: CustomAppBar.CustomApp(context.tr("register"), context),
 
       body: SafeArea(
         child: SingleChildScrollView(
@@ -359,4 +337,5 @@ border: Border.all(
       ),
     );
   }
+
 }

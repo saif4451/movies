@@ -2,13 +2,20 @@ class AppAssets {
   static const String gamer1 = "assets/images/gamer_1.png";
   static const String gamer2 = "assets/images/gamer_2.png";
   static const String gamer3 = "assets/images/gamer_3.png";
+  static const String gamer4 = "assets/images/gamer_4.png";
+  static const String gamer5 = "assets/images/gamer_5.png";
+  static const String gamer6 = "assets/images/gamer_6.png";
+  static const String gamer7 = "assets/images/gamer_7.png";
+  static const String gamer8 = "assets/images/gamer_8.png";
+  static const String gamer9 = "assets/images/gamer_9.png";
   static const String nameIcon = 'assets/icons/name.svg';
   static const String emailIcon = 'assets/icons/email.svg';
   static const String passwordIcon = 'assets/icons/password.svg';
   static const String phoneIcon = 'assets/icons/phone.svg';
   static const String hidePasswordI = 'assets/icons/hidePassword.svg';
   static const String egyptFlag = 'assets/icons/EG.svg';
-static const String usaFlag = 'assets/icons/LR.svg';
+  static const String usaFlag = 'assets/icons/LR.svg';
+  static const String userProf = 'assets/icons/user_prof.svg';
 
 
   static const String onBoarding1 = 'assets/images/on_boarding1.png' ;

@@ -7,6 +7,7 @@ import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/app_text_styels.dart';
 import 'package:movies_app/screens/authntication/_buildTextField.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
+import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -139,9 +140,7 @@ class _RegisterState extends State<Register> {
 
                 Text(
                   context.tr("avatar"),
-                  style: AppTextStyels.White20regular.copyWith(
-                    fontSize:16,
-                  ),
+                  style: AppTextStyels.White16regular,
                 ),
 
                 SizedBox(height: height * 0.010),
@@ -202,37 +201,8 @@ class _RegisterState extends State<Register> {
 
                   height: height * 0.065,
 
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Create Account action
-                    },
+                   child: CustomElevatedButton(text: context.tr("create_account"), func: (){}, color: AppColors.primaryColor, textStyle: AppTextStyels.black20semi)
 
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          AppColors.primaryColor,
-
-                      foregroundColor:
-                          AppColors.blackColor,
-
-                      shape: RoundedRectangleBorder(
-                        borderRadius:
-                            BorderRadius.circular(
-                          width * 0.032,
-                        ),
-                      ),
-
-                      elevation: 0,
-                    ),
-
-                    child: Text(
-                      context.tr("create_account"),
-
-                      style:
-                          AppTextStyels.black20semi.copyWith(
-                        fontSize: 20,
-                      ),
-                    ),
-                  ),
                 ),
 
                 SizedBox(height: height * 0.020),
@@ -254,9 +224,7 @@ class _RegisterState extends State<Register> {
                             TextAlign.center,
 
                         style:
-                            AppTextStyels.White20regular.copyWith(
-                          fontSize: 14,
-                        ),
+                            AppTextStyels.White14regular,
                       ),
                     ),
 
@@ -271,9 +239,7 @@ class _RegisterState extends State<Register> {
                         context.tr("login"),
 
                         style:
-                            AppTextStyels.orange20semi.copyWith(
-                          fontSize: 14,
-                        ),
+                            AppTextStyels.orange14black,
                       ),
                     ),
                   ],

@@ -46,15 +46,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: isPasswordHidden,
         keyboardType: widget.keyboardType,
 
-        style:AppTextStyels.White20regular.copyWith(fontSize: 15,),
+        style:AppTextStyels.White16regular,
         
 
         decoration: InputDecoration(
           hintText: widget.hintText,
 
-          hintStyle: AppTextStyels.White20regular.copyWith(
-            fontSize: 15,
-          ),
+          hintStyle: AppTextStyels.White16regular,
 
           // ================= PREFIX ICON =================
 

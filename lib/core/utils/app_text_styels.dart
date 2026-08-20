@@ -44,6 +44,11 @@ class AppTextStyels {
     fontSize: 20,
     fontWeight: FontWeight.w600
   );
+  static const TextStyle black20regular = TextStyle(
+    color: AppColors.blackColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w400
+  );
   static const TextStyle orange20semi = TextStyle(
     color: AppColors.primaryColor,
     fontSize: 20,

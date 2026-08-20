@@ -136,8 +136,8 @@ flutter_native_splash:
 
   #! ANDROID 12+ configuration:
   android_12:
-    branding: assets/splash_screen/movie_branding.png
-    image: assets/splash_screen/movie_center.png
+    branding: assets/images/movie_branding.png
+    image: assets/images/movie_center.png
     color: "#121312"
     # background colorcolor: "#121312"
     #color: "#42a5f5"

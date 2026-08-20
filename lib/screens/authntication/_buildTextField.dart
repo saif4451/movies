@@ -1,7 +1,10 @@
 // screens/authntication/_buildTextField.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/app_text_styels.dart';
+import 'package:movies_app/core/utils/mob_size.dart';
 
 class CustomTextField extends StatefulWidget {
   final String hintText;
@@ -32,65 +35,82 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      obscureText: isPasswordHidden,
-      keyboardType: widget.keyboardType,
+    final double width = context.width;
+    final double height = context.height;
 
-      style: const TextStyle(
-        color: Colors.white,
-      ),
+    return SizedBox(
+      width: width,
+      height: height * 0.065,
 
-      decoration: InputDecoration(
-        hintText: widget.hintText,
+      child: TextField(
+        obscureText: isPasswordHidden,
+        keyboardType: widget.keyboardType,
 
-        hintStyle:Theme.of(context).textTheme.titleSmall,
-
+        style:AppTextStyels.White16regular,
         
-        prefixIcon: Padding(
-          padding: const EdgeInsets.all(12),
-          child: SvgPicture.asset(
-            widget.imagePath,
-            width: 20,
-            height: 20,
+
+        decoration: InputDecoration(
+          hintText: widget.hintText,
+
+          hintStyle: AppTextStyels.White16regular,
+
+          // ================= PREFIX ICON =================
+
+          prefixIcon: Padding(
+            padding: EdgeInsets.all(width * 0.032),
+
+            child: SvgPicture.asset(
+              widget.imagePath,
+              width: width * 0.053,
+              height: width * 0.053,
+            ),
           ),
-        ),
 
-        
-suffixIcon: widget.obscureText
-    ? IconButton(
-        onPressed: () {
-          setState(() {
-            isPasswordHidden = !isPasswordHidden;
-          });
-        },
-        icon: Icon(
-          isPasswordHidden
-              ? Icons.visibility_off_outlined
-              : Icons.visibility_outlined,
-          color: AppColors.whiteColor,
-          size: 22,
-        ),
-      )
-    : null,
+          // ================= PASSWORD ICON =================
 
-        filled: true,
-        fillColor: const Color(0xFF2A2A2A),
+          suffixIcon: widget.obscureText
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isPasswordHidden = !isPasswordHidden;
+                    });
+                  },
 
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
+                  icon: Icon(
+                    isPasswordHidden
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
 
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
+                    color: AppColors.whiteColor,
+                    size: width * 0.059,
+                  ),
+                )
+              : null,
 
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.primaryColor,
-            width: 1.5,
+          // ================= COLORS =================
+
+          filled: true,
+          fillColor: AppColors.darkGrey,
+
+          // ================= BORDER =================
+
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide.none,
+          ),
+
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+
+            borderSide: const BorderSide(
+              color: AppColors.primaryColor,
+              width: 1.5,
+            ),
           ),
         ),
       ),

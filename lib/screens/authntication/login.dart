@@ -54,9 +54,15 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
 
 
-            Align(
-              alignment: Alignment.centerRight,
-              child: Text(context.tr("forget_password"),style:AppTextStyels.orange14regular
+            InkWell(
+              onTap:(){
+
+                Navigator.pushNamed(context, AppRouts.forgetPasswordRouteName);
+              },
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(context.tr("forget_password"),style:AppTextStyels.orange14regular
+                ),
               ),
             ),
             SizedBox(

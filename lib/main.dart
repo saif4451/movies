@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_routs.dart';
+import 'package:movies_app/screens/authntication/forget_password.dart';
 import 'package:movies_app/screens/authntication/login.dart';
 import 'package:movies_app/screens/authntication/register.dart';
 import 'package:movies_app/screens/home/home_screen.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         AppRouts.updateProf :(context) => UpdateProfile(),
         AppRouts.homeRouteName :(context) => HomeScreen(),
         AppRouts.loginRouteName :(context) => LoginScreen(),
+        AppRouts.forgetPasswordRouteName:   (context)=> ForgetPassword(),
       },
       initialRoute: AppRouts.onBoarding1,
       localizationsDelegates: context.localizationDelegates,

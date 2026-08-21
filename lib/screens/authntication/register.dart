@@ -10,6 +10,8 @@ import 'package:movies_app/core/utils/mob_size.dart';
 import 'package:movies_app/screens/widgets/custom_app_bar.dart';
 import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 
+import '../../core/utils/app_routs.dart';
+
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -179,7 +181,7 @@ class _RegisterState extends State<Register> {
 
                   height: height * 0.065,
 
-                   child: CustomElevatedButton(text: context.tr("create_account"), func: (){}, color: AppColors.primaryColor, textStyle: AppTextStyels.black20semi)
+                   child: CustomElevatedButton(text: context.tr("create_account"), func:() => Navigator.pushReplacementNamed(context, AppRouts.homeRouteName)  , color: AppColors.primaryColor, textStyle: AppTextStyels.black20semi)
 
                 ),
 
@@ -211,6 +213,7 @@ class _RegisterState extends State<Register> {
                     GestureDetector(
                       onTap: () {
                         // Navigate to Login
+                            () => Navigator.pushNamed(context, AppRouts.loginRouteName);
                       },
 
                       child: Text(
@@ -236,10 +239,10 @@ class _RegisterState extends State<Register> {
 
                   decoration: BoxDecoration(
                     color: AppColors.blackColor,
-border: Border.all(
-  color: AppColors.primaryColor,
-  width: 2,
-),
+                    border: Border.all(
+                      color: AppColors.primaryColor,
+                      width: 2,
+                    ),
 
                     borderRadius: BorderRadius.circular(30),),
 

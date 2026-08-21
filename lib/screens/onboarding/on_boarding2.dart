@@ -86,7 +86,7 @@ class _OnBoarding2State extends State<OnBoarding2> {
    }
 
    void finishFunc(){
-Navigator.pushReplacementNamed(context,AppRouts.register);
+     Navigator.pushReplacementNamed(context,AppRouts.loginRouteName);
 
    }
 }

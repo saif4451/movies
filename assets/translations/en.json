@@ -24,8 +24,13 @@
   "create_account": "Create Account",
   "already_have_account": "Already Have Account ?  ",
   "login": "Login",
+  "OR": "OR",
+  "login_with_google": "Login With Google",
+  "login_account": "Don’t Have Account ?",
+  "create_one": "Create One",
   "delete_account": "Delete Account",
   "update_data": "Update Data",
   "reset_password": "Reset Password",
-  "pick_avatar": "Pick Avatar"
+  "pick_avatar": "Pick Avatar",
+  "forget_password": "Forget Password ?"
 }

@@ -11,15 +11,15 @@ class CustomElevatedButton extends StatelessWidget {
   void Function() func;
   Color color;
   TextStyle _textStyle;
+  String? icon;
    CustomElevatedButton({super.key, required this.text,  required this.func,
-    required this.color, required this._textStyle});
+    required this.color, required this._textStyle, this.icon});
 
   @override
   Widget build(BuildContext context) {
     double width = context.width;
     double height = context.height;
     return ElevatedButton(onPressed: func,
-      child:Text(context.tr(text), style: _textStyle,),
       style: ElevatedButton.styleFrom(
           minimumSize: Size(width, height*0.06),
           backgroundColor:color,
@@ -30,6 +30,14 @@ class CustomElevatedButton extends StatelessWidget {
                   width: 2,
             )
           )
+      ),
+      child:Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        spacing: width*0.02,
+        children: [
+          if(icon!=null) Image.asset(icon!),
+          Text(context.tr(text), style: _textStyle,),
+        ],
       ),
     );
   }

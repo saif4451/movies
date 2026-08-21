@@ -1,212 +1,208 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
+import 'package:movies_app/core/utils/app_routs.dart';
+import 'package:movies_app/core/utils/app_text_styels.dart';
+import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 
-class Homescreen extends StatefulWidget{
+import '../../core/utils/mob_size.dart';
+import '_buildTextField.dart';
+
+class LoginScreen extends StatefulWidget{
 
   @override
-  State<Homescreen> createState() => _HomescreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _HomescreenState extends State<Homescreen> {
-  bool isPhidden = true;
+class _LoginScreenState extends State<LoginScreen> {
+  int selectedFlag = 0;
   @override
   Widget build(BuildContext context) {
 
     final size =MediaQuery.of(context).size;
-    double screenwidth= size.width;
-    double screenheight= size.height;
+    double width= context.width;
+    double height= context.height;
 
     return Scaffold(
       backgroundColor: AppColors.blackColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 19),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: screenheight*0.08,
-              ),
-              Image.asset(AppAssets.logo,width: 118,height: 121,fit: BoxFit.fill,),
+      body: Padding(
+        padding:  EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.02),
+        child: Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: height*0.01,
+          children: [
+
             SizedBox(
-              height: screenheight*0.08,
+              height: height*0.05,
             ),
-              TextFormField(
-        
-                style: TextStyle(
-                    color: AppColors.whiteColor
-                ),
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: AppColors.darkGrey,
-                  prefixIcon: Image.asset(AppAssets.emailIcon),
-                  hintText: 'Email',
-                  border: OutlineInputBorder(
-        
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide.none
-                  )
-        
-                ),
+            Image.asset(AppAssets.logo,),
+            SizedBox(
+              height: height*0.05,
+            ),
+            CustomTextField(
+              hintText: context.tr("email"),
+              imagePath: AppAssets.emailIcon,
+              keyboardType: TextInputType.emailAddress,
+            ),
+
+            CustomTextField(
+              hintText: context.tr("password"),
+              imagePath: AppAssets.passwordIcon,
+              obscureText: true,
+            ),
+
+
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(context.tr("forget_password"),style:AppTextStyels.orange14regular
               ),
-              SizedBox(
-                height: screenheight*0.02,
-              ),
-              TextFormField(
-                style: TextStyle(
-                  color: AppColors.whiteColor
-                ),
-                obscureText: isPhidden,
-                decoration: InputDecoration(
-        
-                  filled: true,
-                  fillColor: AppColors.darkGrey,
-                  suffixIcon: IconButton(
-                      onPressed: (){
-                      setState(() {
-                        isPhidden =! isPhidden;
-                      });
-                      },
-                      icon: Icon(
-                    isPhidden ?Icons.visibility_off
-                        : Icons.visibility
-                  )),
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.only(left: 11),
-                    child: Image.asset(AppAssets.passwordIcon),
-                  ),
-                  hintText: 'password',
-                  border: OutlineInputBorder(
-        
-                    borderRadius: BorderRadius.circular(15),
-                    borderSide: BorderSide.none
-                  )
-        
-                ),
-              ),
-              SizedBox(height: screenheight*0.02,),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text('Forget Password?',style: TextStyle(
-                  color: AppColors.primaryColor
+            ),
+            SizedBox(
+              height: height*0.02,
+            ),
+            CustomElevatedButton(text: context.tr("login"), func: () => Navigator.pushReplacementNamed(context, AppRouts.homeRouteName)  , color: AppColors.primaryColor, textStyle: AppTextStyels.black20regular)
+            , SizedBox(
+              height: height*0.01,
+            )
+            ,Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: width*0.01,
+              children: [
+                Text(context.tr("login_account"),style: AppTextStyels.White14regular,),
+                InkWell(
+                 onTap: () => Navigator.pushNamed(context, AppRouts.register)
+                ,child: Text(context.tr("create_one"),style: AppTextStyels.orange14black,)
                 )
+              ],
+            ),
+
+            SizedBox(
+              height: height*0.01,
+            ),
+            Row(
+              spacing: width*0.05,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: Divider(color: AppColors.primaryColor, height: 2,indent: width*0.15,)),
+                Text(context.tr("OR"),style: TextStyle(color: AppColors.primaryColor),),
+                Expanded(child: Divider(color: AppColors.primaryColor, height: 2,endIndent: width*0.15,)),
+              ],
+            ),
+            SizedBox(
+              height: height*0.01,
+            ),
+            
+            CustomElevatedButton(text: "login_with_google", func: (){},
+                color: AppColors.primaryColor,
+                textStyle: AppTextStyels.black16regular, icon: AppAssets.googleIcon,),
+            SizedBox(
+              height: height*0.02,
+            ),
+            Container(
+              height: height * 0.050,
+
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.010,
+              ),
+
+              decoration: BoxDecoration(
+                color: AppColors.blackColor,
+                border: Border.all(
+                  color: AppColors.primaryColor,
+                  width: 2,
                 ),
-              ),
-              SizedBox(height: screenheight*0.03,),
-              SizedBox(
-        
-                width: screenwidth*0.9,
-                height: screenheight*0.07,
-                child: ElevatedButton(onPressed: (){},
-                  child:Text('Login',
-        
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black
-                  ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)
-                      ),
-                      backgroundColor:AppColors.primaryColor
-                  ),
-                ),
-        
-              ),
-              SizedBox(
-                height: screenheight*0.02,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+
+                borderRadius: BorderRadius.circular(30),),
+
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+
                 children: [
-                  Text('Don`t Have Account ? ',style: TextStyle(color: Colors.white),),
-                  Text('Creat one',style: TextStyle(color:AppColors.primaryColor),)
-                ],
-              ),
-              SizedBox(
-                height: screenheight*0.03,
-              ),
-              Row(
-                spacing: 11,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    color:AppColors.primaryColor,
-                    width: 92,
-                    height: 1,
-                  ),
-                  Text('OR',style: TextStyle(color: AppColors.primaryColor),),
-                  Container(
-                    color: AppColors.primaryColor,
-                    width: 92,
-                    height: 1,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: screenheight*0.03,
-              ),
-        
-        
-        
-        
-        
-        
-        
-              SizedBox(
-        
-                width: screenwidth*0.9,
-                height: screenheight*0.07,
-                child: ElevatedButton(onPressed: (){},
-                    child:Row(
-                      spacing: 8,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Image.asset(AppAssets.googleIcon,width: screenwidth*0.06,height: screenheight*0.3,)
-                      ,Text('Login With Google',style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black
+
+                  // ================= USA =================
+
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedFlag = 0;
+                      });
+                    },
+
+                    child: Container(
+                      width: width * 0.09,
+                      height: width * 0.09,
+
+
+
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+
+                        border: Border.all(
+                            color: selectedFlag == 0
+                                ? AppColors.primaryColor
+                                : Colors.transparent,
+
+                            width:4
                         ),
-                        )
-                      ],
-        
+                      ),
+
+                      child: ClipOval(
+                        child: SvgPicture.asset(
+                          AppAssets.usaFlag,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    backgroundColor: AppColors.primaryColor
                   ),
-                ),
-        
-              )
-        
-            ],
-          ),
+
+                  SizedBox(
+                    width: width * 0.03,
+                  ),
+
+                  // ================= EGYPT =================
+
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedFlag = 1;
+                      });
+                    },
+
+                    child: Container(
+                      width: width * 0.09,
+                      height: width * 0.09,
+
+
+
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+
+                        border: Border.all(
+                          color: selectedFlag == 1
+                              ? AppColors.primaryColor
+                              : Colors.transparent,
+
+                          width: 4,
+                        ),
+                      ),
+
+                      child: ClipOval(
+                        child: SvgPicture.asset(
+                          AppAssets.egyptFlag,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+          ],
         ),
       ),
     );
   }
 }
-// FloatingActionButton(onPressed: (){},
-// child: Stack(
-// alignment: Alignment.center,
-// children: [
-// Container(
-// width: screenwidth*0.9,
-// height: double.infinity,
-// decoration: BoxDecoration(
-// color: AppClors.primary
-// ),
-// ),
-// Row(
-// children: [
-// Image.asset(Appassets.googleicon,width: screenwidth*0.06,height: screenheight*0.3,)
-// ],
-// )
-// ],
-// ),)

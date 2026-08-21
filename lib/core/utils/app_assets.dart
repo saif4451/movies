@@ -29,6 +29,8 @@ class AppAssets {
   static const String onBoarding6on = 'assets/images/on_boarding5on.png' ;
   static const String onBoarding4 = 'assets/images/on_boarding6.png' ;
   static const String onBoarding4on = 'assets/images/on_boarding6on.png' ;
+  static const String logo = 'assets/images/logo.png' ;
+  static const String googleIcon = 'assets/images/googleIcon.png' ;
 
   static const String homeIcon = 'assets/icons/home_icon.svg' ;
   static const String searchIcon = 'assets/icons/search_icon.svg' ;

@@ -32,5 +32,7 @@
   "update_data": "Update Data",
   "reset_password": "Reset Password",
   "pick_avatar": "Pick Avatar",
-  "forget_password": "Forget Password ?"
+  "forget_password": "Forget Password ?",
+  "forget_password_appBar": "Forget Password",
+  "verify_email": "Verify Email"
 }

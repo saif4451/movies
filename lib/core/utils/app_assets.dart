@@ -16,6 +16,7 @@ class AppAssets {
   static const String egyptFlag = 'assets/icons/EG.svg';
   static const String usaFlag = 'assets/icons/LR.svg';
   static const String userProf = 'assets/icons/user_prof.svg';
+  static const String forgetPassword ='assets/images/Forgot password.png';
 
 
   static const String onBoarding1 = 'assets/images/on_boarding1.png' ;

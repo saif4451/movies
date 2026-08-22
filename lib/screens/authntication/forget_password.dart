@@ -13,7 +13,6 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size =MediaQuery.of(context).size;
     double width= context.width;
     double height= context.height;
     return Scaffold(

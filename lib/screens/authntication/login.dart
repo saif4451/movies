@@ -6,6 +6,7 @@ import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/app_routs.dart';
 import 'package:movies_app/core/utils/app_text_styels.dart';
+import 'package:movies_app/core/utils/app_validators.dart';
 import 'package:movies_app/screens/widgets/custom_elevated_button.dart';
 import 'cubit/login_cubit.dart';
 import 'cubit/login_state.dart';
@@ -65,12 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: context.tr("email"),
                         imagePath: AppAssets.emailIcon,
                         keyboardType: TextInputType.emailAddress,
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Please enter your email';
-                          }
-                          return null;
-                        },
+                        validator:AppValidators.validateEmail
                       ),
 
                       CustomTextField(
@@ -78,12 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: context.tr("password"),
                         imagePath: AppAssets.passwordIcon,
                         obscureText: true,
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Please enter your password';
-                          }
-                          return null;
-                        },
+                        validator: AppValidators.validatePassword,
                       ),
 
 

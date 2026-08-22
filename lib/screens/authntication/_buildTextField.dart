@@ -11,8 +11,12 @@ class CustomTextField extends StatefulWidget {
   final String imagePath;
   final bool obscureText;
   final TextInputType? keyboardType;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
+    this.controller,
+    this.validator,
     super.key,
     required this.hintText,
     required this.imagePath,
@@ -42,7 +46,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       width: width,
       height: height * 0.065,
 
-      child: TextField(
+      child: TextFormField(
+        controller: widget.controller,
+        validator: widget.validator,
         obscureText: isPasswordHidden,
         keyboardType: widget.keyboardType,
 

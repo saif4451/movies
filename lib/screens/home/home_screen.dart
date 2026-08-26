@@ -5,7 +5,6 @@ import 'package:movies_app/screens/home/tabs/browse_tab.dart';
 import 'package:movies_app/screens/home/tabs/home_tab.dart';
 import 'package:movies_app/screens/home/tabs/profile_tab.dart';
 import 'package:movies_app/screens/home/tabs/search_tab.dart';
-
 import '../../core/utils/app_assets.dart';
 import '../../core/utils/app_colors.dart';
 

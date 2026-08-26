@@ -39,6 +39,8 @@ dependencies:
   easy_localization: ^3.0.8
   introduction_screen: ^4.0.0
   flutter_native_splash: ^2.4.8
+  dio: ^5.11.0
+  carousel_slider: ^5.1.2
 
 dev_dependencies:
   flutter_test:

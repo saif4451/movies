@@ -33,6 +33,10 @@ class AppTextStyels {
     color: AppColors.whiteColor,
     fontSize: 14,
     fontWeight: FontWeight.w400
+  );static const TextStyle primary16regular = TextStyle(
+    color: AppColors.primaryColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400
   );
   static const TextStyle orange14black = TextStyle(
     color: AppColors.primaryColor,

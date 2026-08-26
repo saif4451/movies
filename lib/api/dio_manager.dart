@@ -24,16 +24,11 @@ class ApiService {
       throw Exception('Dio error: ${e.message}');
     }
   }
-  // في ملف ApiService (dio_manager.dart)
   Future<List<String>> getGenres() async {
     try {
-      // استبدلي هذا الرابط برابط الـ API الفعلي للأنواع إذا كان مختلفاً
-      // بعض الـ APIs لا توفر مساراً مستقلاً للأنواع، وفي هذه الحالة نضطر لإرسال قائمة ثابتة
-      // أو استخراجها من الـ الأفلام (لو كان الـ API يعيد الأنواع ضمن الـ movies).
       final response = await _dio.get('https://movies-api.accel.li/api/v2/list_movies.json');
 
       if (response.statusCode == 200) {
-        // بناءً على هيكل استجابة الـ API الخاص بك
         List results = response.data['data']['genres'] ?? [];
         return results.map((e) => e.toString()).toList();
       } else {

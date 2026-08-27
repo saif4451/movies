@@ -40,7 +40,6 @@ class Movies {
     slug = json['slug'];
     year = json['year'];
 
-    // 💡 التحويل الآمن لمنع تعارض int و double
     rating = json['rating'] != null ? (json['rating'] as num).toDouble() : null;
 
     runtime = json['runtime'];

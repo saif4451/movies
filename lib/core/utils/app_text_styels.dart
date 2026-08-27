@@ -14,6 +14,16 @@ class AppTextStyels {
     fontSize: 24,
     fontWeight: FontWeight.bold
   );
+  static const TextStyle white20bold = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 20,
+    fontWeight: FontWeight.bold
+  );
+  static const TextStyle grey20bold = TextStyle(
+    color: AppColors.Grey,
+    fontSize: 20,
+    fontWeight: FontWeight.bold
+  );
   static const TextStyle lightWhite20regular = TextStyle(
     color: AppColors.lightwhiteColor,
     fontSize: 20,

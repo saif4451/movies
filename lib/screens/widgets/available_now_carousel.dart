@@ -77,7 +77,7 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
                   itemCount: widget.movies.length,
                   itemBuilder: (context, index, realIndex) {
                     final movie = widget.movies[index];
-                    return MovieCard(width:context.width*0.6,movie: movie);
+                    return MovieCard(width:context.width*0.6,movie: movie, height: context.height * 0.23,);
                   },
                   options: CarouselOptions(
                     height: double.infinity,

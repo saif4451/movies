@@ -71,7 +71,6 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
 
               SizedBox(height: context.height * 0.01),
 
-              // Carousel Slider متمدد باستغلال Expanded
               Expanded(
                 child: CarouselSlider.builder(
                   itemCount: widget.movies.length,
@@ -84,7 +83,7 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
                     viewportFraction: 0.54,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.35,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlayInterval: const Duration(seconds: 2),
                     enableInfiniteScroll: true,
                     onPageChanged: (index, reason) {
@@ -96,7 +95,6 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
                 ),
               ),
 
-              // Watch Now Image
               Image.asset(AppAssets.watchNow),
             ],
           ),

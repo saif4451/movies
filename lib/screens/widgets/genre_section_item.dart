@@ -28,7 +28,6 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
     _scrollController.dispose();
     super.dispose();
   }
-//see more scroll
   void _scrollToNextGroup(BuildContext context) {
     if (_scrollController.hasClients) {
       final double scrollAmount = context.width * 0.4;
@@ -39,7 +38,7 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
           0.0,
           _scrollController.position.maxScrollExtent,
         ),
-        duration: const Duration(milliseconds: 400),
+        duration:  Duration(milliseconds: 400),
         curve: Curves.easeInOut,
       );
     }
@@ -98,7 +97,7 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
           child: ListView.builder(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
+            physics:  BouncingScrollPhysics(),
             padding: EdgeInsets.only(left: context.width * 0.04),
             itemCount: genreMovies.length,
             itemBuilder: (context, index) {

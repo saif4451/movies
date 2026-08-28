@@ -1,41 +1,38 @@
 import 'package:dio/dio.dart';
-import 'package:movies_app/core/utils/Model/movie_model/Movies.dart';
+import 'package:movies_app/core/utils/Model/movie_model/movies_source.dart';
+import 'api_constant.dart';
+import 'end_points.dart';
 
 class ApiService {
-  final Dio _dio = Dio();
-  final String _baseUrl = 'https://movies-api.accel.li/api/v2/list_movies.json';
+  static final Dio _dio = Dio(
+    BaseOptions(
+      baseUrl: ApiConstants.baseUrl,
+    ),
+  );
 
-  Future<List<Movies>> getMovies({String? genre}) async {
+  static Future<MoviesSource> getMovies({String? genre}) async {
     try {
       final response = await _dio.get(
-        _baseUrl,
+        EndPoints.listMovies,
         queryParameters: {
           if (genre != null) 'genre': genre,
+          'sort_by': 'date_added',
         },
       );
 
-      if (response.statusCode == 200) {
-        List results = response.data['data']['movies'] ?? [];
-        return results.map((e) => Movies.fromJson(e)).toList();
-      } else {
-        throw Exception('Failed to load movies');
-      }
-    } on DioException catch (e) {
-      throw Exception('Dio error: ${e.message}');
+      return MoviesSource.fromJson(response.data);
+    } catch (e) {
+      rethrow;
     }
   }
-  Future<List<String>> getGenres() async {
-    try {
-      final response = await _dio.get('https://movies-api.accel.li/api/v2/list_movies.json');
 
-      if (response.statusCode == 200) {
-        List results = response.data['data']['genres'] ?? [];
-        return results.map((e) => e.toString()).toList();
-      } else {
-        throw Exception('Failed to load genres');
-      }
-    } on DioException catch (e) {
-      throw Exception('Dio error: ${e.message}');
+  static Future<MoviesSource> getGenres() async {
+    try {
+      final response = await _dio.get(EndPoints.listMovies);
+
+      return MoviesSource.fromJson(response.data);
+    } catch (e) {
+      rethrow;
     }
   }
 }

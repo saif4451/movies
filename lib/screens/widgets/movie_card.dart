@@ -82,8 +82,8 @@ class MovieCard extends StatelessWidget {
                     SizedBox(width: context.width * 0.01),
                     Image.asset(
                       AppAssets.star,
-                      width: 12,
-                      height: 12,
+                      width: context.width*0.03,
+                      height: context.height*0.022,
                     ),
                   ],
                 ),

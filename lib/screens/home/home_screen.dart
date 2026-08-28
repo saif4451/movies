@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
 import 'package:movies_app/screens/home/tabs/browse_tab.dart';
-import 'package:movies_app/screens/home/tabs/home_tab.dart';
+import 'package:movies_app/screens/home/tabs/homeTab/home_tab.dart';
 import 'package:movies_app/screens/home/tabs/profile_tab.dart';
 import 'package:movies_app/screens/home/tabs/search_tab.dart';
 import '../../core/utils/app_assets.dart';

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/Model/movie_model/Movies.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
-import '../../../api/dio_manager.dart';
-import '../../widgets/available_now_carousel.dart';
-import '../../widgets/genre_section_item.dart';
+import '../../../../api/dio_manager.dart';
+import '../../../widgets/available_now_carousel.dart';
+import '../../../widgets/genre_section_item.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});

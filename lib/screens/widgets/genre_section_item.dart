@@ -105,6 +105,7 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
               return MovieCard(
                 movie: genreMovies[index],
                 width: context.width * 0.35,
+                height: context.height * 0.23,
               );
             },
           ),

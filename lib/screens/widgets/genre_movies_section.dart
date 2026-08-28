@@ -54,6 +54,7 @@ class GenreMoviesSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return MovieCard(
                   width:context.width*0.5,
+                  height: context.height * 0.23,
                   movie: movies[index]);
             },
           ),

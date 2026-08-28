@@ -34,5 +34,14 @@
   "pick_avatar": "Pick Avatar",
   "forget_password": "Forget Password ?",
   "forget_password_appBar": "Forget Password",
-  "verify_email": "Verify Email"
+  "verify_email": "Verify Email",
+  "watch": "Watch",
+  "screen_shots": "Screen Shots",
+  "similar": "Similar",
+  "summary": "Summary",
+  "cast": "Cast",
+  "name": "Name : ",
+  "character": "Character : ",
+  "genres": "Genres"
+
 }

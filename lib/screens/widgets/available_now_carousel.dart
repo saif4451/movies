@@ -83,7 +83,7 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
                     viewportFraction: 0.54,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.35,
-                    autoPlay: false,
+                    autoPlay: true,
                     autoPlayInterval: const Duration(seconds: 2),
                     enableInfiniteScroll: true,
                     onPageChanged: (index, reason) {

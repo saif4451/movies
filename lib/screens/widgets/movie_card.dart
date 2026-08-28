@@ -37,7 +37,7 @@ class MovieCard extends StatelessWidget {
                   if (loadingProgress == null) return child;
                   return Container(
                     color: AppColors.blackColor.withOpacity(0.3),
-                    child: const Center(
+                    child:  Center(
                       child: CircularProgressIndicator(
                         color: AppColors.primaryColor,
                         strokeWidth: 2,

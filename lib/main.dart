@@ -1,3 +1,4 @@
+// main.dart
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ import 'package:movies_app/screens/onboarding/on_boarding1.dart';
 import 'package:movies_app/screens/onboarding/on_boarding2.dart';
 import 'package:movies_app/screens/update_profile/update_profile.dart';
 import 'firebase_options.dart';
+
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();

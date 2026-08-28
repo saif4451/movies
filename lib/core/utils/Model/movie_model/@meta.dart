@@ -4,7 +4,7 @@ class MoviesSource {
   String? status;
   String? statusMessage;
   Data? data;
-  Meta? meta; // تغيير النوع هنا
+  Meta? meta;
 
   MoviesSource({
     this.status,
@@ -34,7 +34,6 @@ class MoviesSource {
   }
 }
 
-// تغيير اسم الكلاس والكونستراكتور من @meta إلى Meta
 class Meta {
   int? apiVersion;
   String? executionTime;

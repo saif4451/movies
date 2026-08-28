@@ -30,10 +30,7 @@ class GenreMoviesSection extends StatelessWidget {
             children: [
               Text(
                 genreName,
-                style: AppTextStyels.White16regular.copyWith(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: AppTextStyels.White20regular
               ),
               const Icon(
                 Icons.arrow_forward_ios,

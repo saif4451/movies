@@ -71,7 +71,6 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
 
               SizedBox(height: context.height * 0.01),
 
-              // Carousel Slider متمدد باستغلال Expanded
               Expanded(
                 child: CarouselSlider.builder(
                   itemCount: widget.movies.length,
@@ -96,7 +95,6 @@ class _AvailableNowCarouselState extends State<AvailableNowCarousel> {
                 ),
               ),
 
-              // Watch Now Image
               Image.asset(AppAssets.watchNow),
             ],
           ),

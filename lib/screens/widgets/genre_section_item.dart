@@ -6,56 +6,28 @@ import 'package:movies_app/core/utils/app_text_styels.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
 import 'movie_card.dart';
 
-class GenreSectionItem extends StatefulWidget {
+class GenreSectionItem extends StatelessWidget {
   final String genreName;
   final List<Movies> allMovies;
+  final VoidCallback? onSeeMoreTap;
 
   const GenreSectionItem({
     super.key,
     required this.genreName,
     required this.allMovies,
+    this.onSeeMoreTap,
   });
 
   @override
-  State<GenreSectionItem> createState() => _GenreSectionItemState();
-}
-
-class _GenreSectionItemState extends State<GenreSectionItem> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-//see more scroll
-  void _scrollToNextGroup(BuildContext context) {
-    if (_scrollController.hasClients) {
-      final double scrollAmount = context.width * 0.4;
-      final double targetOffset = _scrollController.offset + scrollAmount;
-
-      _scrollController.animateTo(
-        targetOffset.clamp(
-          0.0,
-          _scrollController.position.maxScrollExtent,
-        ),
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-
-    final genreMovies = widget.allMovies.where((movie) {
+    final genreMovies = allMovies.where((movie) {
       if (movie.genres == null) return false;
       return movie.genres!.any(
-            (g) => g.toLowerCase().trim() == widget.genreName.toLowerCase().trim(),
+            (g) => g.toLowerCase().trim() == genreName.toLowerCase().trim(),
       );
     }).toList();
 
-    if (genreMovies.isEmpty) return const SizedBox.shrink();
+    if (genreMovies.isEmpty) return  SizedBox.shrink();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,20 +40,18 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                widget.genreName,
-                style: AppTextStyels.White20regular
-              ),
+              Text(genreName, style: AppTextStyels.White20regular),
               InkWell(
-                onTap: () => _scrollToNextGroup(context),
+
+                onTap: onSeeMoreTap,
                 child: Row(
                   children: [
                     Text(
                       context.tr('see_more'),
-                      style: AppTextStyels.primary16regular
+                      style: AppTextStyels.primary16regular,
                     ),
-                     SizedBox(width: context.width*0.01),
-                     Icon(
+                    SizedBox(width: context.width * 0.01),
+                    const Icon(
                       Icons.arrow_forward,
                       color: AppColors.primaryColor,
                       size: 14,
@@ -92,11 +62,9 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
             ],
           ),
         ),
-
         SizedBox(
           height: context.height * 0.23,
           child: ListView.builder(
-            controller: _scrollController,
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             padding: EdgeInsets.only(left: context.width * 0.04),
@@ -110,7 +78,6 @@ class _GenreSectionItemState extends State<GenreSectionItem> {
             },
           ),
         ),
-
         SizedBox(height: context.height * 0.02),
       ],
     );

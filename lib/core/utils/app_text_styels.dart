@@ -1,4 +1,3 @@
-// core/utils/app_text_styels.dart
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 
@@ -25,7 +24,7 @@ class AppTextStyels {
     fontWeight: FontWeight.bold
   );
   static const TextStyle lightWhite20regular = TextStyle(
-    color: AppColors.lightwhiteColor,
+    color: AppColors.lightWhiteColor,
     fontSize: 20,
     fontWeight: FontWeight.w400
   );

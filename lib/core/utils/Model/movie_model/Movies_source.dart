@@ -19,7 +19,7 @@ class MoviesSource {
   String? status;
   String? statusMessage;
   Data? data;
-  Meta? meta; // تم التعديل من @meta إلى Meta
+  Meta? meta;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -29,7 +29,7 @@ class MoviesSource {
       map['data'] = data?.toJson();
     }
     if (meta != null) {
-      map['@meta'] = meta?.toJson(); // يُترك المفتاح النصي كما هو للقراءة الصحيحة من الـ API
+      map['@meta'] = meta?.toJson();
     }
     return map;
   }

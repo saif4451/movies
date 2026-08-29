@@ -35,8 +35,9 @@ class CastContainer extends StatelessWidget {
             children: [
               SizedBox(
                 width: actor.urlSmallImage!=null?width*0.6:width*0.7,
-                  child: Text(context.tr("name")+ "${actor.name ?? ''}", style: AppTextStyels.White20regular,)),
-              SizedBox(child: Text(context.tr("character")+"${actor.characterName ?? ''}", style: AppTextStyels.White20regular,))
+                  child: Text(context.tr("name_cast")+ "${actor.name ?? ''}", style: AppTextStyels.White20regular,)),
+              SizedBox(width: actor.urlSmallImage!=null?width*0.6:width*0.7,
+                  child: Text(context.tr("character")+"${actor.characterName ?? ''}", style: AppTextStyels.White20regular,))
             ],
           )
         ],

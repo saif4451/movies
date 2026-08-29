@@ -33,23 +33,28 @@ class _MovieResponseState extends State<MovieResponse> {
             return  MainLoadingWidget();
           }
           else if (snapshot.hasError) {
-            return MainErrorWidget(errorMessage:  'Error: ${snapshot.error}',
-                func2: () => Navigator.pop(context),
-                func1: () {
+
+            return MainErrorWidget(
+              errorMessage:  'Error: ${snapshot.error}',
+              onPressed: () {
                   apiService.getMovieDetails(MovieId: widget.movieId);
                   setState(() {
 
                   });
-                },);
+                },
+              ExitPressed: () => Navigator.pop(context),
+            );
+
           } else if (!snapshot.hasData|| snapshot.data == null ) {
             return MainErrorWidget(errorMessage:  'No Details Available',
-              func2: () => Navigator.pop(context),
-              func1: () {
+              ExitPressed: () => Navigator.pop(context),
+              onPressed: () {
                 apiService.getMovieDetails(MovieId: widget.movieId);
                 setState(() {
 
                 });
               },
+
             );
           }
 

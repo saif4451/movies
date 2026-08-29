@@ -1,14 +1,16 @@
+
+
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:movies_app/core/utils/mob_size.dart';
+
 import '../../../../api/dio_manager.dart';
-import '../../../../core/utils/Model/movie_model/@meta.dart';
-import '../../../../core/utils/Model/movie_model/Movies.dart';
+import '../../../../core/utils/Model/movie_model/Movies_source.dart';
+import '../../../../core/utils/mob_size.dart';
 import '../../../widgets/Main_loading_widget.dart';
 import '../../../widgets/available_now_carousel.dart';
 import '../../../widgets/genre_section_item.dart';
-import 'package:movies_app/screens/widgets/main_error_widget.dart';
-
+import '../../../widgets/main_Error_widget.dart';
 import '../../../widgets/show_all_movies_bottomsheet.dart';
 
 class HomeTab extends StatefulWidget {

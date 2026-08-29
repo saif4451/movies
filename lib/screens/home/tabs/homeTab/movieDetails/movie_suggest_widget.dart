@@ -22,7 +22,7 @@ class MovieSuggestWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return MovieCard(movie: movies[index], width:width*0.3,height: height*0.4, );
         },
-      itemCount: 4,
+      itemCount: movies.length>4?4:movies.length,
     );
   }
 }

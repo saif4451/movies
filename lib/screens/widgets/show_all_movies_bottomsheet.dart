@@ -64,6 +64,7 @@ class AllMoviesBottomSheet extends StatelessWidget {
                 return MovieCard(
                   movie: genreMovies[index],
                   width: double.infinity,
+                  height: context.width,
                 );
               },
             ),

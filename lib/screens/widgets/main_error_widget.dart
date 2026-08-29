@@ -6,9 +6,13 @@ import '../../core/utils/mob_size.dart';
 class MainErrorWidget extends StatelessWidget {
   final String errorMessage;
   final VoidCallback onPressed;
-  const MainErrorWidget({super.key,
+  final VoidCallback? ExitPressed;
+
+   MainErrorWidget({super.key,
   required this.errorMessage
-  ,required this.onPressed});
+  ,required this.onPressed,
+     this.ExitPressed,
+   });
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,14 @@ class MainErrorWidget extends StatelessWidget {
               style: AppTextStyels.black20semi,
             ),
           ),
+          SizedBox(height: context.height*0.02),
+          if(ExitPressed!=null) ElevatedButton(
+            onPressed: onPressed,
+            child: Text(
+              "Exit",
+              style: AppTextStyels.black20semi,
+            ),
+          ) ,
         ],
       ),
     );

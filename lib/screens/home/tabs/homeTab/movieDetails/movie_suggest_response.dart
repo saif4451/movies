@@ -8,8 +8,8 @@ import 'package:movies_app/screens/widgets/main_Error_widget.dart';
 
 
 class MovieSuggestResponse extends StatefulWidget {
-  int movieId;
-  MovieSuggestResponse({super.key, required this.movieId});
+  final int movieId;
+  const MovieSuggestResponse({super.key, required this.movieId});
 
   @override
   State<MovieSuggestResponse> createState() => MovieSuggestResponseState();
@@ -33,20 +33,20 @@ class MovieSuggestResponseState extends State<MovieSuggestResponse> {
           return  MainLoadingWidget();
         }
         else if (snapshot.hasError) {
+          print(widget.movieId);
           return MainErrorWidget(errorMessage:  'Error: ${snapshot.error}',
-            func2: () => Navigator.pop(context),
-            func1: () {
-              apiService.getMovieDetails(MovieId: widget.movieId);
+            onPressed: () {
               setState(() {
+                movieSuggest = apiService.getMovieSuggestion(MovieId:  widget.movieId);;
 
               });
             },);
         } else if (!snapshot.hasData|| snapshot.data == null ) {
           return MainErrorWidget(errorMessage:  'No Details Available',
-            func2: () => Navigator.pop(context),
-            func1: () {
-              apiService.getMovieDetails(MovieId: widget.movieId);
+
+            onPressed: () {
               setState(() {
+                movieSuggest = apiService.getMovieSuggestion(MovieId:  widget.movieId);;
 
               });
             },

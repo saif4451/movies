@@ -17,6 +17,7 @@
   "register": "Register",
   "avatar": "Avatar",
   "name": "Name",
+  "name_cast": "Name :",
   "email": "Email",
   "password": "Password",
   "confirm_password": "Confirm Password",
@@ -40,7 +41,6 @@
   "similar": "Similar",
   "summary": "Summary",
   "cast": "Cast",
-  "name": "Name : ",
   "character": "Character : ",
   "genres": "Genres"
 

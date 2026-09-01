@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/api/dio_manager.dart';
 import 'package:movies_app/core/utils/Model/movie_model/Movies.dart';
-import 'package:movies_app/core/utils/Model/movie_suggestion/Movies_suggest.dart';
 import 'package:movies_app/screens/home/tabs/homeTab/movieDetails/movie_suggest_widget.dart';
 import 'package:movies_app/screens/widgets/Main_loading_widget.dart';
 import 'package:movies_app/screens/widgets/main_Error_widget.dart';

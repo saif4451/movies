@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/Model/movie_details/Movie.dart';
-import 'package:movies_app/core/utils/Model/movie_suggestion/Movies_suggest.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
 import 'package:movies_app/core/utils/app_colors.dart';
 import 'package:movies_app/core/utils/app_routs.dart';
@@ -17,8 +16,8 @@ import 'package:movies_app/screens/widgets/genres_container.dart';
 import '../../../../../core/utils/mob_size.dart';
 
 class MovieWidget extends StatelessWidget {
-  Movie movie;
-  MovieWidget({super.key, required this.movie, });
+ final  Movie movie;
+ const MovieWidget({super.key, required this.movie, });
 
   @override
   Widget build(BuildContext context) {

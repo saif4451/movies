@@ -5,8 +5,8 @@ import '../../core/utils/app_colors.dart';
 import '../../core/utils/mob_size.dart';
 
 class CustomContainerRate extends StatelessWidget {
-  IconData icon;
-  var rate;
+  final IconData icon;
+   var rate;
    CustomContainerRate({super.key, required this.icon, required this.rate});
 
   @override

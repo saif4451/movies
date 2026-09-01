@@ -23,80 +23,80 @@ class MovieCard extends StatelessWidget {
     final imageUrl = movie.mediumCoverImage ?? movie.largeCoverImage ?? '';
 
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, AppRouts.MovieDetailsscreen, arguments: movie.id),
-      child: Container(
-        width: width,
-        height: context.height * 0.23,
-        margin: EdgeInsets.only(right: context.width * 0.03),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(14),
-          child: Stack(
-            fit: StackFit.loose,
-            children: [
-              Positioned.fill(
-                child: imageUrl.isNotEmpty
-                    ? Image.network(
-                  imageUrl,
-                  fit: BoxFit.cover,
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) return child;
-                    return Container(
-                      color: AppColors.blackColor.withOpacity(0.3),
-                      child: const Center(
-                        child: CircularProgressIndicator(
-                          color: AppColors.primaryColor,
-                          strokeWidth: 2,
+        onTap: () => Navigator.pushNamed(context, AppRouts.MovieDetailsscreen, arguments: movie.id),
+        child: Container(
+          width: width,
+          height: context.height * 0.23,
+          margin: EdgeInsets.only(right: context.width * 0.03),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(14),
+            child: Stack(
+              fit: StackFit.loose,
+              children: [
+                Positioned.fill(
+                  child: imageUrl.isNotEmpty
+                      ? Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Container(
+                        color: AppColors.blackColor.withOpacity(0.3),
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                            strokeWidth: 2,
+                          ),
                         ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: Colors.grey[900],
+                      child: const Icon(
+                        Icons.broken_image,
+                        color: AppColors.whiteColor,
+                        size: 30,
                       ),
-                    );
-                  },
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    color: Colors.grey[900],
-                    child: const Icon(
-                      Icons.broken_image,
-                      color: AppColors.whiteColor,
-                      size: 30,
+                    ),
+                  )
+                      : Container(color: Colors.grey[900]),
+                ),
+
+                Positioned(
+                  top: context.height * 0.01,
+                  left: context.width * 0.02,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.width * 0.018,
+                      vertical: context.height * 0.003,
+                    ),
+                    decoration: BoxDecoration(
+                      color: AppColors.blackColor.withOpacity(0.75),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          '${movie.rating ?? 0.0}',
+                          style: AppTextStyels.White16regular.copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: context.width * 0.01),
+                        Image.asset(
+                          AppAssets.star,
+                          width: context.width*0.03,
+                          height: context.height*0.022,
+                        ),
+                      ],
                     ),
                   ),
-                )
-                    : Container(color: Colors.grey[900]),
-              ),
-
-            Positioned(
-              top: context.height * 0.01,
-              left: context.width * 0.02,
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.width * 0.018,
-                  vertical: context.height * 0.003,
                 ),
-                decoration: BoxDecoration(
-                  color: AppColors.blackColor.withOpacity(0.75),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      '${movie.rating ?? 0.0}',
-                      style: AppTextStyels.White16regular.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(width: context.width * 0.01),
-                    Image.asset(
-                      AppAssets.star,
-                      width: context.width*0.03,
-                      height: context.height*0.022,
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),)
+          ),)
     );
   }
 }

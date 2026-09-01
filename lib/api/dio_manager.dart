@@ -3,9 +3,7 @@ import '../core/utils/Model/movie_model/Movies.dart';
 import '../core/utils/Model/movie_model/Movies_source.dart';
 import 'api_constant.dart';
 import 'end_points.dart';
-
 import '../core/utils/Model/movie_details/Movie.dart';
-import '../core/utils/Model/movie_suggestion/Movies_suggest.dart';
 
 class ApiService {
 

@@ -7,6 +7,10 @@ class AppTextStyels {
     color: AppColors.whiteColor,
     fontSize: 36,
     fontWeight: FontWeight.w500
+  );static const TextStyle white36bold = TextStyle(
+    color: AppColors.whiteColor,
+    fontSize: 36,
+    fontWeight: FontWeight.bold
   );
   static const TextStyle white24bold = TextStyle(
     color: AppColors.whiteColor,

@@ -65,6 +65,7 @@ class AllMoviesBottomSheet extends StatelessWidget {
                   movie: genreMovies[index],
                   width: double.infinity,
                   height: context.width,
+                  isright: false,
                 );
               },
             ),

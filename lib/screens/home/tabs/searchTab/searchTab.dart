@@ -9,6 +9,7 @@ import 'package:movies_app/core/utils/app_routs.dart';
 import 'package:movies_app/core/utils/app_text_styels.dart';
 import 'package:movies_app/core/utils/mob_size.dart';
 import 'package:movies_app/core/utils/Model/movie_model/Movies.dart';
+import 'package:movies_app/screens/widgets/movie_card.dart';
 
 import 'search_cubit.dart';
 import 'search_state.dart';
@@ -206,9 +207,8 @@ class _SearchViewState extends State<SearchView> {
                       itemCount: movies.length,
 
                       itemBuilder: (context, index) {
-                        return MovieCard(
-                          movie: movies[index],
-                        );
+
+                        return MovieCard(movie: movies[index], width: width, height: height, isright: false,);
                       },
                     );
                   }
@@ -225,107 +225,3 @@ class _SearchViewState extends State<SearchView> {
   }
 }
 
-
-//                         MOVIE CARD
-// ============================================================
-
-class MovieCard extends StatelessWidget {
-  final Movies movie;
-
-  const MovieCard({
-    super.key,
-    required this.movie,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final double width = context.width;
-    final double height = context.height;
-
-    return GestureDetector(
-      onTap: () {
-        // Navigate to movie details screen
-        // Pass the movie ID as route arguments
-        Navigator.pushNamed(
-          context,
-          AppRouts.MovieDetailsscreen,
-          arguments: movie.id,
-        );
-      },
-
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(
-          width * 0.035,
-        ),
-
-        child: Stack(
-          fit: StackFit.expand,
-
-          children: [
-            // ================= MOVIE POSTER =================
-
-            Image.network(
-              movie.mediumCoverImage ?? '',
-              fit: BoxFit.cover,
-
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: AppColors.darkGrey,
-
-                  child: Icon(
-                    Icons.movie_outlined,
-                    color: AppColors.whiteColor,
-                    size: width * 0.12,
-                  ),
-                );
-              },
-            ),
-
-            // ================= RATING =================
-
-            Positioned(
-              top: height * 0.012,
-              left: width * 0.025,
-
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.02,
-                  vertical: height * 0.005,
-                ),
-
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.65),
-
-                  borderRadius: BorderRadius.circular(
-                    width * 0.025,
-                  ),
-                ),
-
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-
-                  children: [
-                    Text(
-                      '${movie.rating ?? 0}',
-                      style: AppTextStyels.White14regular,
-                    ),
-
-                    SizedBox(
-                      width: width * 0.01,
-                    ),
-
-                    Icon(
-                      Icons.star,
-                      color: AppColors.primaryColor,
-                      size: width * 0.045,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

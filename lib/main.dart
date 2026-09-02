@@ -15,6 +15,7 @@ import 'package:movies_app/screens/update_profile/update_profile.dart';
 import 'firebase_options.dart';
 
 
+
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();

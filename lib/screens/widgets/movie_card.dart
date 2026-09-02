@@ -10,12 +10,14 @@ class MovieCard extends StatelessWidget {
   final Movies movie;
   final double width;
   final double height;
+  final bool isright ;
 
   const MovieCard({
     super.key,
     required this.movie,
     required this.width,
-    required this.height
+    required this.height,
+     this.isright = true
   });
 
   @override
@@ -27,7 +29,7 @@ class MovieCard extends StatelessWidget {
         child: Container(
           width: width,
           height: context.height * 0.23,
-          margin: EdgeInsets.only(right: context.width * 0.03),
+          margin: isright?EdgeInsets.only(right: context.width * 0.03):null,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(14),
             child: Stack(
@@ -50,14 +52,17 @@ class MovieCard extends StatelessWidget {
                         ),
                       );
                     },
-                    errorBuilder: (context, error, stackTrace) => Container(
-                      color: Colors.grey[900],
-                      child: const Icon(
-                        Icons.broken_image,
-                        color: AppColors.whiteColor,
-                        size: 30,
-                      ),
-                    ),
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: AppColors.darkGrey,
+
+                        child: Icon(
+                          Icons.movie_outlined,
+                          color: AppColors.whiteColor,
+                          size: width * 0.12,
+                        ),
+                      );
+                    },
                   )
                       : Container(color: Colors.grey[900]),
                 ),

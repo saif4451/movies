@@ -29,7 +29,7 @@ class MovieWidget extends StatefulWidget {
 
 class _MovieWidgetState extends State<MovieWidget> {
   final currentUser = FirebaseAuth.instance.currentUser;
-  late bool isFav;
+
 
 
 
@@ -79,26 +79,16 @@ class _MovieWidgetState extends State<MovieWidget> {
                       }
 
                       if (snapshot.hasError) {
-                        return Center(
-                          child: Text(
-                            "",
-                            style: AppTextStyels.white20bold,
-                          ),
-                        );
+                        return Icon( Icons.bookmark_border, color: AppColors.whiteColor,size: 30,);
                       }
 
-                      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                        return Center(
-                          child: Text(
-                            "",
-                            style: AppTextStyels.white20bold,
-                          ),
-                        );
+                      if (!snapshot.hasData ) {
+                        return Icon( Icons.bookmark_border, color: AppColors.whiteColor,size: 30,);
                       }
 
 
                       final docs = snapshot.data!.docs;
-                      isFav = docs.any((element) => element.id == widget.movie.id.toString(),);
+                      final bool isFav = docs.any((element) => element.id == widget.movie.id.toString(),);
 
 
 

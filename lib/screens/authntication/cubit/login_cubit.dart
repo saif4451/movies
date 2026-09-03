@@ -1,11 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
 
   final FirebaseAuth auth = FirebaseAuth.instance;
+
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email'],
+  );
 
   Future<void> loginUser({
     required String email,
@@ -34,6 +40,37 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginErrorState(message));
     } catch (e) {
       emit(LoginErrorState('An unexpected error occurred'));
+    }
+  }
+
+  Future<void> loginWithGoogle() async {
+    emit(LoginLoadingState());
+    try {
+
+      await _googleSignIn.signOut();
+
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+      if (googleUser == null) {
+
+        emit(LoginInitialState());
+        return;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await auth.signInWithCredential(credential);
+      emit(LoginSuccessState());
+    } on FirebaseAuthException catch (e) {
+      emit(LoginErrorState(e.message ?? 'Firebase Auth Error'));
+    } catch (e) {
+      emit(LoginErrorState('Google Sign-In failed. Please try again.'));
     }
   }
 }

@@ -45,28 +45,26 @@ class _LoginScreenState extends State<LoginScreen> {
         body: BlocConsumer<LoginCubit, LoginState>(
           builder: (context, state) {
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: width*0.04, vertical: height*0.02),
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.04,
+                vertical: height * 0.02,
+              ),
               child: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Column(
                     //crossAxisAlignment: CrossAxisAlignment.center,
-                    spacing: height*0.01,
+                    spacing: height * 0.01,
                     children: [
-
-                      SizedBox(
-                        height: height*0.05,
-                      ),
-                      Image.asset(AppAssets.logo,),
-                      SizedBox(
-                        height: height*0.05,
-                      ),
+                      SizedBox(height: height * 0.05),
+                      Image.asset(AppAssets.logo),
+                      SizedBox(height: height * 0.05),
                       CustomTextField(
                         controller: emailController,
                         hintText: context.tr("email"),
                         imagePath: AppAssets.emailIcon,
                         keyboardType: TextInputType.emailAddress,
-                        validator:AppValidators.validateEmail
+                        validator: AppValidators.validateEmail,
                       ),
 
                       CustomTextField(
@@ -77,78 +75,98 @@ class _LoginScreenState extends State<LoginScreen> {
                         validator: AppValidators.validatePassword,
                       ),
 
-
                       InkWell(
-                        onTap:(){
-
-                          Navigator.pushNamed(context, AppRouts.forgetPasswordRouteName);
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            AppRouts.forgetPasswordRouteName,
+                          );
                         },
                         child: Align(
                           alignment: Alignment.centerRight,
-                          child: Text(context.tr("forget_password"),style:AppTextStyels.orange14regular
+                          child: Text(
+                            context.tr("forget_password"),
+                            style: AppTextStyels.orange14regular,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: height*0.02,
-                      ),
+                      SizedBox(height: height * 0.02),
                       state is LoginLoadingState
                           ? const CircularProgressIndicator(
-                        color: AppColors.primaryColor,
-                      )
+                              color: AppColors.primaryColor,
+                            )
                           : CustomElevatedButton(
-                        text: context.tr("login"),
+                              text: context.tr("login"),
+                              func: () {
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<LoginCubit>().loginUser(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  );
+                                }
+                              },
+                              color: AppColors.primaryColor,
+                              textStyle: AppTextStyels.black20regular,
+                            ),
+                      SizedBox(height: height * 0.01),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        spacing: width * 0.01,
+                        children: [
+                          Text(
+                            context.tr("login_account"),
+                            style: AppTextStyels.White14regular,
+                          ),
+                          InkWell(
+                            onTap: () =>
+                                Navigator.pushNamed(context, AppRouts.register),
+                            child: Text(
+                              context.tr("create_one"),
+                              style: AppTextStyels.orange14black,
+                            ),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(height: height * 0.01),
+                      Row(
+                        spacing: width * 0.05,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              color: AppColors.primaryColor,
+                              height: 2,
+                              indent: width * 0.15,
+                            ),
+                          ),
+                          Text(
+                            context.tr("OR"),
+                            style: TextStyle(color: AppColors.primaryColor),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              color: AppColors.primaryColor,
+                              height: 2,
+                              endIndent: width * 0.15,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: height * 0.01),
+
+                      CustomElevatedButton(
+                        text: "login_with_google",
                         func: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<LoginCubit>().loginUser(
-                              email: emailController.text,
-                              password: passwordController.text,
-                            );
-                          }
+                          BlocProvider.of<LoginCubit>(
+                            context,
+                          ).loginWithGoogle();
                         },
                         color: AppColors.primaryColor,
-                        textStyle: AppTextStyels.black20regular,
-                      )
-                      , SizedBox(
-                        height: height*0.01,
-                      )
-                      ,Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        spacing: width*0.01,
-                        children: [
-                          Text(context.tr("login_account"),style: AppTextStyels.White14regular,),
-                          InkWell(
-                              onTap: () => Navigator.pushNamed(context, AppRouts.register)
-                              ,child: Text(context.tr("create_one"),style: AppTextStyels.orange14black,)
-                          )
-                        ],
+                        textStyle: AppTextStyels.black16regular,
+                        icon: AppAssets.googleIcon,
                       ),
-
-                      SizedBox(
-                        height: height*0.01,
-                      ),
-                      Row(
-                        spacing: width*0.05,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(child: Divider(color: AppColors.primaryColor, height: 2,indent: width*0.15,)),
-                          Text(context.tr("OR"),style: TextStyle(color: AppColors.primaryColor),),
-                          Expanded(child: Divider(color: AppColors.primaryColor, height: 2,endIndent: width*0.15,)),
-                        ],
-                      ),
-                      SizedBox(
-                        height: height*0.01,
-                      ),
-
-                      CustomElevatedButton(text: "login_with_google", func: ()
-                      {
-                        // todo google Login action
-                      },
-                        color: AppColors.primaryColor,
-                        textStyle: AppTextStyels.black16regular, icon: AppAssets.googleIcon,),
-                      SizedBox(
-                        height: height*0.02,
-                      ),
+                      SizedBox(height: height * 0.02),
                       Container(
                         height: height * 0.050,
 
@@ -163,15 +181,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 2,
                           ),
 
-                          borderRadius: BorderRadius.circular(30),),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
 
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
 
                           children: [
-
                             // ================= USA =================
-
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -183,17 +200,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: width * 0.09,
                                 height: width * 0.09,
 
-
-
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
 
                                   border: Border.all(
-                                      color: selectedFlag == 0
-                                          ? AppColors.primaryColor
-                                          : Colors.transparent,
+                                    color: selectedFlag == 0
+                                        ? AppColors.primaryColor
+                                        : Colors.transparent,
 
-                                      width:4
+                                    width: 4,
                                   ),
                                 ),
 
@@ -206,12 +221,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
 
-                            SizedBox(
-                              width: width * 0.03,
-                            ),
+                            SizedBox(width: width * 0.03),
 
                             // ================= EGYPT =================
-
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -222,8 +234,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Container(
                                 width: width * 0.09,
                                 height: width * 0.09,
-
-
 
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
@@ -248,7 +258,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),

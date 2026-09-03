@@ -62,7 +62,7 @@ class WatchList extends StatelessWidget {
           padding: EdgeInsets.all(context.width * 0.04),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            crossAxisSpacing: context.width * 0.01,
+            crossAxisSpacing: context.width * 0.03,
             mainAxisSpacing: context.height * 0.02,
             childAspectRatio: 0.6,
           ),
@@ -81,6 +81,7 @@ class WatchList extends StatelessWidget {
               movie: movie,
               width: double.infinity,
               height: context.height * 0.23,
+              isright: false,
 
             );
           },

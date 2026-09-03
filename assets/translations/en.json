@@ -26,6 +26,7 @@
   "already_have_account": "Already Have Account ?  ",
   "login": "Login",
   "OR": "OR",
+  "exit": "Exit",
   "login_with_google": "Login With Google",
   "login_account": "Don’t Have Account ?",
   "create_one": "Create One",
@@ -42,6 +43,9 @@
   "summary": "Summary",
   "cast": "Cast",
   "character": "Character : ",
-  "genres": "Genres"
+  "genres": "Genres",
+  "history": "History",
+  "wish_list": "Wish List",
+  "edit_profile": "'Edit profile'"
 
 }

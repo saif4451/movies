@@ -19,6 +19,66 @@ class MovieWidget extends StatelessWidget {
  final  Movie movie;
  const MovieWidget({super.key, required this.movie, });
 
+
+ /*Future<void> _markMovieAsWatched(BuildContext context) async {
+   try {
+     final user = FirebaseAuth.instance.currentUser;
+     if (user == null) {
+       ScaffoldMessenger.of(context).showSnackBar(
+         const SnackBar(content: Text('Please log in first!')),
+       );
+       return;
+     }
+
+     await FirebaseFirestore.instance
+         .collection('users')
+         .doc(user.uid)
+         .collection('watched_movies')
+         .doc(movie.id.toString())
+         .set({
+       'movieId': movie.id,
+       'title': movie.title ?? '',
+       'posterPath': movie.largeCoverImage ?? '',
+       'watchedAt': FieldValue.serverTimestamp(),
+     });
+
+     ScaffoldMessenger.of(context).showSnackBar(
+       const SnackBar(content: Text('Added to Watched History successfully!')),
+     );
+   } catch (e) {
+     ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(content: Text('Error: ${e.toString()}')),
+     );
+   }
+ }
+*/
+
+ /*Future<void> _markMovieAsWatched(BuildContext context) async {
+   try {
+     const dummyUserId = "test_user_id";
+
+     await FirebaseFirestore.instance
+         .collection('users')
+         .doc(dummyUserId)
+         .collection('watched_movies')
+         .doc(movie.id.toString())
+         .set({
+       'movieId': movie.id,
+       'title': movie.title ?? '',
+       'posterPath': movie.largeCoverImage ?? '',
+       'watchedAt': FieldValue.serverTimestamp(),
+     });
+
+     ScaffoldMessenger.of(context).showSnackBar(
+       const SnackBar(content: Text('Added to Watched History successfully!')),
+     );
+   } catch (e) {
+     ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(content: Text('Error: ${e.toString()}')),
+     );
+   }
+ }
+ */
   @override
   Widget build(BuildContext context) {
     var width = context.width;
@@ -63,7 +123,8 @@ class MovieWidget extends StatelessWidget {
                   style: AppTextStyels.white24bold,),
                 Text('${movie.year??''}',
                   style: AppTextStyels.grey20bold,),
-                CustomElevatedButton(text: context.tr("watch"), func: (){},
+                CustomElevatedButton(text: context.tr("watch"),
+                    func: () {},
                     color: AppColors.redColor, textStyle: AppTextStyels.white20bold),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

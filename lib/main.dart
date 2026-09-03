@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         AppRouts.forgetPasswordRouteName:   (context)=> ForgetPassword(),
         AppRouts.MovieDetailsscreen:   (context)=> MovieDetailsScreen(),
       },
-      initialRoute: AppRouts.homeRouteName,
+      initialRoute: AppRouts.onBoarding1,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

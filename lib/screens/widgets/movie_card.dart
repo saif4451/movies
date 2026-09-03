@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart'; // 1. استيراد فايربيز
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/core/utils/Model/movie_model/Movies.dart';
 import 'package:movies_app/core/utils/app_assets.dart';
@@ -18,12 +20,45 @@ class MovieCard extends StatelessWidget {
     required this.height
   });
 
+  Future<void> _saveMovieOnTap(BuildContext context) async {
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+
+      if (currentUser == null) return;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser.uid)
+          .collection('watched_movies')
+          .doc((movie.id ?? 0).toString())
+          .set({
+        'movieId': movie.id ?? 0,
+        'title': movie.title ?? '',
+        'posterPath': movie.mediumCoverImage ?? movie.largeCoverImage ?? '',
+        'rating': movie.rating ?? 0.0, // <-- ضفنا تخزين الـ rating هنا
+        'watchedAt': FieldValue.serverTimestamp(),
+      });
+    } catch (e) {
+      debugPrint('Error saving movie on tap: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final imageUrl = movie.mediumCoverImage ?? movie.largeCoverImage ?? '';
 
     return InkWell(
-        onTap: () => Navigator.pushNamed(context, AppRouts.MovieDetailsscreen, arguments: movie.id),
+        onTap: () async {
+          await _saveMovieOnTap(context);
+
+          if (context.mounted) {
+            Navigator.pushNamed(
+              context,
+              AppRouts.MovieDetailsscreen,
+              arguments: movie.id,
+            );
+          }
+        },
         child: Container(
           width: width,
           height: context.height * 0.23,
@@ -96,7 +131,8 @@ class MovieCard extends StatelessWidget {
                 ),
               ],
             ),
-          ),)
+          ),
+        )
     );
   }
 }

@@ -46,6 +46,8 @@
   "genres": "Genres",
   "history": "History",
   "wish_list": "Wish List",
-  "edit_profile": "'Edit profile'"
+  "edit_profile": "Edit profile",
+  "no_favorite": "No favorite yet!"
+
 
 }

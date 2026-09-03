@@ -54,14 +54,14 @@ class _UserInfoRow extends StatelessWidget {
         Expanded(
           child: _FirestoreCountCounter(
             collectionName: 'wish_list',
-            label: context.tr('Wish List'),
+            label: context.tr("wish_list"),
             userId: currentUser.uid,
           ),
         ),
         Expanded(
           child: _FirestoreCountCounter(
             collectionName: 'watched_movies',
-            label: context.tr('History'),
+            label: context.tr('history'),
             userId: currentUser.uid,
           ),
         ),
@@ -82,7 +82,7 @@ class _UserProfileAvatarAndName extends StatelessWidget {
     return Column(
       spacing: height * 0.01,
       children: [
-        Image.asset(AppAssets.gamer1),
+
         FutureBuilder<DocumentSnapshot>(
           future: FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get(),
           builder: (context, snapshot) {
@@ -93,10 +93,22 @@ class _UserProfileAvatarAndName extends StatelessWidget {
             if (snapshot.hasData && snapshot.data!.exists) {
               final userData = snapshot.data!.data() as Map<String, dynamic>;
               final userName = userData['name'] ?? userData['username'] ?? currentUser.displayName ?? 'User';
-              return Text(userName, style: AppTextStyels.white20bold, overflow: TextOverflow.ellipsis);
+              final userImage = userData['avatar'] ?? '';
+              return Column(
+                spacing: height * 0.01,
+                children: [
+                  Image.asset(userImage),
+                  Text(userName, style: AppTextStyels.white20bold, overflow: TextOverflow.ellipsis),
+                ],
+              );
             }
 
-            return Text(currentUser.displayName ?? 'User', style: AppTextStyels.white20bold, overflow: TextOverflow.ellipsis);
+            return Column(
+              spacing: height * 0.01,
+              children: [
+                Image.asset(AppAssets.gamer1),
+                Text(currentUser.displayName ?? 'User', style: AppTextStyels.white20bold, overflow: TextOverflow.ellipsis)              ],
+            );
           },
         ),
       ],
@@ -150,7 +162,7 @@ class _ActionButtonsRow extends StatelessWidget {
         Expanded(
           flex: 2,
           child: CustomElevatedButton(
-            text: 'Edit profile',
+            text: context.tr("edit_profile"),
             func: () => Navigator.pushNamed(context, AppRouts.updateProf),
             color: AppColors.primaryColor,
             textStyle: AppTextStyels.black20regular,
@@ -159,7 +171,7 @@ class _ActionButtonsRow extends StatelessWidget {
         Expanded(
           flex: 1,
           child: CustomElevatedButton(
-            text: 'Exit',
+            text: context.tr("exit"),
             func: () async {
               await FirebaseAuth.instance.signOut();
               if (context.mounted) {

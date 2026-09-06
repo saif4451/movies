@@ -79,39 +79,33 @@ class _UserProfileAvatarAndName extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = context.height;
 
-    return Column(
-      spacing: height * 0.01,
-      children: [
+    return FutureBuilder<DocumentSnapshot>(
+      future: FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return MainLoadingWidget();
+        }
 
-        FutureBuilder<DocumentSnapshot>(
-          future: FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return MainLoadingWidget();
-            }
+        if (snapshot.hasData && snapshot.data!.exists) {
+          final userData = snapshot.data!.data() as Map<String, dynamic>;
+          final userName = userData['name'] ?? userData['username'] ?? currentUser.displayName ?? 'User';
+          final userImage = userData['avatar'] ?? '';
+          return Column(
+            spacing: height * 0.01,
+            children: [
+              Image.asset(userImage),
+              Text(userName, style: AppTextStyels.white20bold),
+            ],
+          );
+        }
 
-            if (snapshot.hasData && snapshot.data!.exists) {
-              final userData = snapshot.data!.data() as Map<String, dynamic>;
-              final userName = userData['name'] ?? userData['username'] ?? currentUser.displayName ?? 'User';
-              final userImage = userData['avatar'] ?? '';
-              return Column(
-                spacing: height * 0.01,
-                children: [
-                  Image.asset(userImage),
-                  Text(userName, style: AppTextStyels.white20bold, overflow: TextOverflow.ellipsis),
-                ],
-              );
-            }
-
-            return Column(
-              spacing: height * 0.01,
-              children: [
-                Image.asset(AppAssets.gamer1),
-                Text(currentUser.displayName ?? 'User', style: AppTextStyels.white20bold, overflow: TextOverflow.ellipsis)              ],
-            );
-          },
-        ),
-      ],
+        return Column(
+          spacing: height * 0.01,
+          children: [
+            Image.asset(AppAssets.gamer1),
+            Text(currentUser.displayName ?? 'User', style: AppTextStyels.white20bold)              ],
+        );
+      },
     );
   }
 }
@@ -163,6 +157,7 @@ class _ActionButtonsRow extends StatelessWidget {
           flex: 2,
           child: CustomElevatedButton(
             text: context.tr("edit_profile"),
+            // todo: when going back restate the screen to make the udates
             func: () => Navigator.pushNamed(context, AppRouts.updateProf),
             color: AppColors.primaryColor,
             textStyle: AppTextStyels.black20regular,

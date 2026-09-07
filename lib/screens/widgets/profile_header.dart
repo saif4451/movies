@@ -1,3 +1,5 @@
+// screens/widgets/profile_header.dart
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +16,7 @@ import 'custom_elevated_button.dart';
 class ProfileHeader extends StatelessWidget {
   final User currentUser;
 
-   const ProfileHeader({required this.currentUser});
+  const ProfileHeader({super.key, required this.currentUser});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,13 @@ class ProfileHeader extends StatelessWidget {
         spacing: height * 0.015,
         children: [
           SizedBox(height: height * 0.06),
+
+          // USER INFORMATION
+
           _UserInfoRow(currentUser: currentUser),
+
+          // ACTION BUTTONS
+
           _ActionButtonsRow(),
         ],
       ),
@@ -49,8 +57,11 @@ class _UserInfoRow extends StatelessWidget {
       spacing: width * 0.03,
       children: [
         Expanded(
-          child: _UserProfileAvatarAndName(currentUser: currentUser),
+          child: _UserProfileAvatarAndName(
+            currentUser: currentUser,
+          ),
         ),
+
         Expanded(
           child: _FirestoreCountCounter(
             collectionName: 'wish_list',
@@ -58,6 +69,7 @@ class _UserInfoRow extends StatelessWidget {
             userId: currentUser.uid,
           ),
         ),
+
         Expanded(
           child: _FirestoreCountCounter(
             collectionName: 'watched_movies',
@@ -73,37 +85,84 @@ class _UserInfoRow extends StatelessWidget {
 class _UserProfileAvatarAndName extends StatelessWidget {
   final User currentUser;
 
-  const _UserProfileAvatarAndName({required this.currentUser});
+  const _UserProfileAvatarAndName({
+    required this.currentUser,
+  });
 
   @override
   Widget build(BuildContext context) {
     var height = context.height;
 
-    return FutureBuilder<DocumentSnapshot>(
-      future: FirebaseFirestore.instance.collection('users').doc(currentUser.uid).get(),
+    // Listen to Firestore so the profile updates automatically
+    // when name or avatar changes.
+
+    return StreamBuilder<DocumentSnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('users')
+          .doc(currentUser.uid)
+          .snapshots(),
+
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MainLoadingWidget();
         }
 
+        // Default values
+
+        String userName =
+            currentUser.displayName ?? 'User';
+
+        String userImage = AppAssets.gamer1;
+
+        // Get updated data from Firestore
+
         if (snapshot.hasData && snapshot.data!.exists) {
-          final userData = snapshot.data!.data() as Map<String, dynamic>;
-          final userName = userData['name'] ?? userData['username'] ?? currentUser.displayName ?? 'User';
-          final userImage = userData['avatar'] ?? '';
-          return Column(
-            spacing: height * 0.01,
-            children: [
-              Image.asset(userImage),
-              Text(userName, style: AppTextStyels.white20bold),
-            ],
-          );
+          final data =
+              snapshot.data!.data() as Map<String, dynamic>;
+
+          userName = data['name'] ?? userName;
+
+          final String avatar =
+              data['avatar'] ?? '';
+
+          // Use Firestore avatar if it exists.
+          // Otherwise use the default avatar.
+
+          if (avatar.isNotEmpty) {
+            userImage = avatar;
+          }
         }
 
         return Column(
           spacing: height * 0.01,
           children: [
-            Image.asset(AppAssets.gamer1),
-            Text(currentUser.displayName ?? 'User', style: AppTextStyels.white20bold)              ],
+            ClipOval(
+              child: Image.asset(
+                userImage,
+                height: height * 0.10,
+                width: height * 0.10,
+                fit: BoxFit.cover,
+
+                errorBuilder: (
+                  context,
+                  error,
+                  stackTrace,
+                ) {
+                  return Image.asset(
+                    AppAssets.gamer1,
+                    height: height * 0.10,
+                    width: height * 0.10,
+                    fit: BoxFit.cover,
+                  );
+                },
+              ),
+            ),
+
+            Text(
+              userName.isEmpty ? 'User' : userName,
+              style: AppTextStyels.white20bold,
+            ),
+          ],
         );
       },
     );
@@ -134,12 +193,23 @@ class _FirestoreCountCounter extends StatelessWidget {
               .doc(userId)
               .collection(collectionName)
               .snapshots(),
+
           builder: (context, snapshot) {
-            int count = snapshot.hasData ? snapshot.data!.docs.length : 0;
-            return Text('$count', style: AppTextStyels.white36bold);
+            int count = snapshot.hasData
+                ? snapshot.data!.docs.length
+                : 0;
+
+            return Text(
+              '$count',
+              style: AppTextStyels.white36bold,
+            );
           },
         ),
-        Text(label, style: AppTextStyels.white24bold),
+
+        Text(
+          label,
+          style: AppTextStyels.white24bold,
+        ),
       ],
     );
   }
@@ -157,26 +227,38 @@ class _ActionButtonsRow extends StatelessWidget {
           flex: 2,
           child: CustomElevatedButton(
             text: context.tr("edit_profile"),
-            // todo: when going back restate the screen to make the udates
-            func: () => Navigator.pushNamed(context, AppRouts.updateProf),
+
+            // Open update profile screen
+
+            func: () => Navigator.pushNamed(
+              context,
+              AppRouts.updateProf,
+            ),
+
             color: AppColors.primaryColor,
             textStyle: AppTextStyels.black20regular,
           ),
         ),
+
         Expanded(
           flex: 1,
           child: CustomElevatedButton(
             text: context.tr("exit"),
+
+            // Sign out the current user
+
             func: () async {
               await FirebaseAuth.instance.signOut();
+
               if (context.mounted) {
                 Navigator.pushNamedAndRemoveUntil(
                   context,
                   AppRouts.loginRouteName,
-                      (route) => false,
+                  (route) => false,
                 );
               }
             },
+
             color: AppColors.redColor,
             textStyle: AppTextStyels.White20regular,
           ),
@@ -185,3 +267,4 @@ class _ActionButtonsRow extends StatelessWidget {
     );
   }
 }
+

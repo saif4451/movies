@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'login_state.dart';
@@ -69,7 +70,11 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginSuccessState());
     } on FirebaseAuthException catch (e) {
       emit(LoginErrorState(e.message ?? 'Firebase Auth Error'));
-    } catch (e) {
+    } on PlatformException catch(e){
+      emit(LoginErrorState( 'Login Error'));
+
+    }
+    catch (e) {
       emit(LoginErrorState('Google Sign-In failed. Please try again.'));
     }
   }
